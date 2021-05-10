@@ -1,0 +1,9 @@
+.banner{
+    background-color: #862121;
+    height: 90px;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 120px;
+}

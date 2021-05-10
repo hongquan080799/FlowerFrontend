@@ -1,0 +1,18 @@
+.detail_product{
+    margin-top: 50px;
+    color: #4d4c4c;
+}
+
+.toggle-nav{
+    margin-top: 20px;
+}
+
+.tab-content{
+    margin-top: 20px;
+}
+.nav-link{
+    color: #249f66;
+}
+.nav-link:hover{
+    color: #4d4c4c;
+}
