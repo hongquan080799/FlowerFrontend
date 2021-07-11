@@ -120,9 +120,9 @@ function Admin_workplace({slide}){
                             <div className="row">
                                 <div className="col-12">
                                     <label>Mã danh mục</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='madm' readOnly={onUpdate?true:false}/>
+                                    <input className="form-control" placeholder="Nhập vào đây ..." ref={register} name='madm' readOnly={onUpdate?true:false} required title="Nhập vào trường này"/>
                                     <label>Tên danh mục</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='tendm'/>
+                                    <input className="form-control" placeholder="Nhập vào đây ..." ref={register} name='tendm' required/>
                                 </div>        
                                 <button className="btn btn-success mt-4 mr-4 btn-input"  type="submit" >Submit</button>
                                 <button className="btn btn-info mt-4 mr-4 btn-input" type="reset">Reset</button>

@@ -1,16 +1,52 @@
 import React,{useState,useEffect,useContext} from 'react'
 import Detail_Portfolio from './Detail_Portfolio'
+import Paypal from './Paypal'
 import hoa from '../image/hoa4.jpg'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 import {UserContext} from '../context/UserContext'
 import './Cart.css'
 import emailjs from 'emailjs-com';
+import {db} from '../firebase'
 export default function Cart(){
     let myStorage = window.localStorage;
+    const ghn = {
+        shop_id:"80020",
+        to_name:"hongquan",
+        to_phone:"0336781801",
+        to_address:"371 Nguyễn kiệm p3 Q.Gò vấp",
+        to_ward_code:"21305",
+        to_district_id:1461,
+        weight:100,
+        length:100,
+        width:100,
+        height:100,
+        service_type_id:2,
+        service_id:0,
+        payment_type_id:2,
+        required_note:"CHOTHUHANG",
+         items: [
+             {
+                 name:"Áo Polo",
+                 code:"Polo123",
+                 quantity: 1,
+                 price: 200000,
+                 length: 12,
+                 width: 12,
+                 height: 12,
+                 category: 
+                 {
+                     level1:"Áo"
+                 }
+             }
+             
+         ]
+    }
     const [user,setUser] = useState({});
     const [total,setTotal] =useState(0)
     const history = useHistory();
+    const [thanhtoan,setThanhtoan] = useState(1)
+    const [checkout,setCheckout] = useState(false);
     const header = {
         headers: {
             Authorization: 'Bearer ' + window.localStorage.getItem('jwt') //the token is a variable which holds the token
@@ -162,9 +198,16 @@ export default function Cart(){
                 });
         } 
       const order = ()=>{
-        axios.post(process.env.REACT_APP_API+`donhang/${user.makh}`,sanpham,header)
+        if(thanhtoan == 0){
+            if(!checkout){
+                alert('Bạn chưa thanh toán !!!')
+                return
+            }
+        }
+        axios.post(process.env.REACT_APP_API+`donhang/${user.makh}?thanhtoan=${thanhtoan}`,sanpham,header)
         .then(res => {
             alert('Đặt hàng thành công'); 
+            giahangnhanh(res.data)
             const myMessage = myEmail
             sendEmail(myMessage);
             setSanpham([]);
@@ -174,6 +217,53 @@ export default function Cart(){
         .catch(err => alert('Đặt hàng thất bại'))
       }
 
+      const giahangnhanh = (madh)=>{
+        const myItems = cart.map(c=>{
+            if(isInList(c.sanpham.masp))
+            return {
+                name:c.sanpham?.tensp,
+                code:c.sanpham?.masp,
+                quantity: c.soluong,
+                price: c.sanpham?.dongia,
+                length: 12,
+                width: 12,
+                height: 12,
+                category: 
+                {
+                    level1:"Hoa"
+                }
+            }
+        })
+        const gh = {
+            ...ghn,
+            to_name: user.ho + ' ' +user.ten,
+            to_phone:user.sdt,
+            to_address:user.diachi,
+            order_value:total * 22000,
+            cod_amount:total * 22000,
+            items:myItems
+        }
+        console.log(gh);
+        const myHeader = {
+            headers:{
+                token:"382632fb-ba14-11eb-8546-ca480ac3485e"
+            }
+        }
+        axios.post("https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/create",gh,myHeader)
+        .then(res => {
+            console.log(res)
+            const madhGHN = res.data.data.order_code;
+            db.collection('donhang').add({
+                madh:madh,
+                madhGHN:madhGHN
+            })
+            console.log({
+                madh,
+                madhGHN
+            })
+        })
+        .catch(err => console.log(err))
+      }
       const isInList= (masp)=>{
             return sanpham.some(sp => sp.masp === masp)
       }
@@ -216,6 +306,10 @@ export default function Cart(){
                   </table>
                   <hr/>
               </div>`
+    const paymentStatus = (status)=>{
+        setCheckout(status);
+        alert('Thanh toán thành công')
+    }
     return (
         <div>
             <div className='banner'>
@@ -235,7 +329,7 @@ export default function Cart(){
                                     <td onClick={()=> deleteCart(c.sanpham.masp)} className="deleteCart">&#10005;</td>
                                     <td><img src={c.sanpham.photo} alt="picture" style={{width:"70px",marginRight:"30px"}} /> {c.sanpham.tensp}</td>
                                     <td style={{width:"15%"}}><input type="number" className="form-control" min="1" max={c.sanpham.soluong} defaultValue={c.soluong} onClick={(e)=>changeNum(e,c.sanpham)} /></td>
-                                    <td><p className="text-danger">{c.sanpham.dongia * c.soluong} đ</p></td>
+                                    <td><p className="text-danger">{c.sanpham.dongia * c.soluong} $</p></td>
                                     <td><input type="checkbox" className="form-check-input" defaultChecked onClick={(e)=>checkSP(e,c.sanpham,c.soluong)}/></td>
                                 </tr>
                             ))}
@@ -249,7 +343,6 @@ export default function Cart(){
                             <h4>Tạm tính :</h4>
                             <h4>{total} đ</h4>
                         </div>
-                        
                         {sanpham.length>0?<button className="btn btn-success btn-lg mt-4" data-toggle="modal" data-target="#exampleModal">Đặt hàng</button>:''}
                           <div className="modal fade" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div className="modal-dialog modal-lg" role="document">
@@ -290,7 +383,7 @@ export default function Cart(){
                                             return(
                                                 <tr key={c.sanpham.masp}>
                                                     <td><img src={c.sanpham.photo} alt="picture" style={{width:"70px",marginRight:"30px"}} /> {c.sanpham.tensp}</td>
-                                                    <td style={{width:"15%"}}>Số lượng : {c.sanpham.soluong}</td>
+                                                    <td style={{width:"15%"}}>Số lượng : {c.soluong}</td>
                                                     <td className="text-danger">{c.sanpham.dongia * c.soluong} đ</td>
                                                 </tr>)
                                             }
@@ -298,8 +391,18 @@ export default function Cart(){
                                         <hr/>
                                         <tr>
                                             <td colSpan="2" style={{fontSize:"23px"}}>Tổng tiền</td>
-                                            <td style={{fontSize:"23px"}}>{total} đ</td>
+                                            <td style={{fontSize:"23px"}}>{total} $</td>
                                         </tr>
+                                        <tr>
+                                            <td>Thanh toán</td>
+                                            <td colSpan="2"><select className="custom-select my-1 mr-sm-2" onChange={(e)=>setThanhtoan(e.target.value)}>
+                                              <option value={1}>Tiền mặt</option>
+                                              <option value={0}>Online</option>
+                                            </select></td>
+                                        </tr>
+                                        {thanhtoan == 0?<tr>
+                                            <Paypal paymentStatus={paymentStatus} tongtien = {total}/>
+                                        </tr>:''}
                                     </table>
 
                                   </div>

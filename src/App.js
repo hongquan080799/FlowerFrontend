@@ -13,6 +13,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Activate from './components/Activate'
 import Nhanvien from './components/Nhanvien'
+import ForgetPass from './components/ForgetPass'
+import ViewAccount from './components/ViewAccount'
 import {UserProvider} from './context/UserContext'
 import ViewOrder from './components/ViewOrder'
 import {
@@ -39,12 +41,42 @@ function App() {
         
         <_ScrollToTop>
           <Route path="/" exact>
+
           <Header />
           <Carousel />
           <ItemList />
           <About />
           <Commit />
           <Bottom />
+          </Route>
+
+          <Route path="/forget" exact>
+            
+          <Header />
+          <ForgetPass />
+          <About />
+          <Commit />
+          <Bottom />
+          </Route>
+
+          <Route path="/viewAcc" exact>
+            
+            <Header />
+            <ViewAccount />
+            <About />
+            <Commit />
+            <Bottom />
+            </Route>
+  
+
+          <Route path="/page/:num" exact>
+          <Header />
+          <Carousel />
+          <ItemList />
+          <About />
+          <Commit />
+          <Bottom />
+          
           
         </Route>
         <Route path="/danhmuc/:madm" exact>

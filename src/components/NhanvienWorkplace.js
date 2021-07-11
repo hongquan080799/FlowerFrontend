@@ -130,15 +130,15 @@ function Admin_workplace({slide}){
                                 <div className="row">
                                     <div className="col-6">
                                         <label>Họ nhân viên</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='ho' onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='ho' onChange={updateInput} required/>
                                         <label>Tên nhân viên</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='ten' onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='ten' onChange={updateInput} required/>
                                         <label>Email</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='email' onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='email' onChange={updateInput} required/>
                                         <label>Số  điện thoại</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='sdt' onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='sdt' onChange={updateInput} required/>
                                         <label>Giới tính</label>
-                                        <select className="custom-select my-1 mr-sm-2" name="gioitinh" onChange={updateInput}>
+                                        <select className="custom-select my-1 mr-sm-2" name="gioitinh" required onChange={updateInput}>
                                             <option value={1}>Nam</option>
                                             <option value={0}>Nữ</option>
                                         </select>
@@ -148,13 +148,13 @@ function Admin_workplace({slide}){
                                     </div>
                                     <div className="col-6">
                                         <label>Địa chỉ</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='diachi' onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='diachi' required onChange={updateInput}/>
                                         <label>Lương</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='luong' onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='luong' required onChange={updateInput}/>
                                         <label>Username</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='username' onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='username' required onChange={updateInput}/>
                                         <label>Password</label>
-                                        <input className="form-control" placeholder="Please enter here ..." name='password' type="password" onChange={updateInput}/>
+                                        <input className="form-control" placeholder="Nhập vào đây ..." name='password' required type="password" onChange={updateInput}/>
                                     </div>
                                 </div>
                                 

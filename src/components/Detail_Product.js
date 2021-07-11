@@ -199,7 +199,12 @@ function Detail_Product(){
 
                 <div className="tab-content">
                     <div className="tab-pane container active" id="home">{sanpham?.mota_chitiet}</div>
-                    <div className="tab-pane container fade" id="menu1">Sacombank Hongquan 0040232232</div>
+                    <div className="tab-pane container fade" id="menu1">
+                        <h6> - Thanh toán bằng tiền mặt</h6>
+                        <img src="https://s.marketwatch.com/public/resources/images/MW-IE698_stimul_ZG_20200417141427.jpg" style={{width:'80%'}} />
+                        <h6 className="mt-4"> - Thanh toán online</h6>
+                        <img src="https://cdn.tgdd.vn/Files/2019/07/16/1179841/636629240000820088-760x367.jpg" style={{width:'80%'}}/>
+                    </div>
                     <div className="tab-pane container fade" id="menu2">
                         <div className="row">
                             <div className="col-12 mb-4">

@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
+import {db} from '../firebase'
 import './ViewOrder.css'
 import {useHistory} from 'react-router-dom'
 
@@ -52,6 +53,7 @@ const ViewOrder = ()=>{
         if(kq){
           axios.put(process.env.REACT_APP_API +'donhang/'+madh,null,header)
         .then(res => {
+          huyGHN(madh);
           alert('Hủy đơn hàng thành công !!!')
           axios.get(process.env.REACT_APP_API +'donhang/'+user?.makh,header)
             .then(res => setDonhang(res.data))
@@ -59,6 +61,25 @@ const ViewOrder = ()=>{
         })
         .catch(err => alert('Hủy đơn thất bại'))
         }
+      }
+      const huyGHN = async (madh)=>{
+        const myHeader = {
+          headers:{
+              token:"382632fb-ba14-11eb-8546-ca480ac3485e",
+              shop_id:80020
+          }
+        }
+        const dhRef = db.collection('donhang');
+        
+        dhRef.onSnapshot(snapshot => {
+          const DHGHN = snapshot.docs.map(doc => doc.data()).find(data => data.madh === madh)?.madhGHN;
+          axios.post("https://dev-online-gateway.ghn.vn/shiip/public-api/v2/switch-status/cancel",{order_codes:[DHGHN]},myHeader)
+        })
+
+
+       
+
+      
       }
     return (
        <div className="container view-container">
@@ -79,6 +100,7 @@ const ViewOrder = ()=>{
                           <h5 className="mb-2">Mã đơn hàng : {dh?.madh}</h5>
                           <h6>Ngày đặt : {dh?.ngaydat}</h6>
                           <h6>Tổng tiền : {dh?.tongtien} $</h6>
+                          <h6>Hình thức thanh toán : {dh?.hinhthucthanhtoan == 1?'Tiền mặt':'Online'}</h6>
                           <h6>Tình trạng đơn hàng : {getTinhtrang(dh?.trangthai)}</h6>
                           {dh?.trangthai==0?<button className="btn btn-outline-danger mt-3" type="button" onClick={()=>huyDon(dh?.madh)}>Hủy đơn hàng</button>:''}
                           <h5 className="mt-4">Danh sách sản phẩm</h5>

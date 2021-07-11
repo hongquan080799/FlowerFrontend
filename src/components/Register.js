@@ -92,24 +92,24 @@ const Register = ()=>{
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
                     <p>HỌ</p>
-                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào họ của bạn" name="ho" onChange={changeInput} />
+                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào họ của bạn" name="ho" onChange={changeInput} required />
                     <p>TÊN</p>
-                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào tên của bạn" name="ten" onChange={changeInput} />
+                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào tên của bạn" name="ten" onChange={changeInput} required />
                     <p>GIỚI TÍNH</p>
-                    <select className="custom-select my-1 mr-sm-2" name="gioitinh" onChange={changeInput}>
+                    <select className="custom-select my-1 mr-sm-2" name="gioitinh" onChange={changeInput} >
                       <option value={1}>Nam</option>
                       <option value={0}>Nữ</option>
                     </select>
                     <p>SỐ ĐIỆN THOẠI</p>
-                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập số thoại thoại" name="sdt" onChange={changeInput}/>
+                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập số thoại thoại" name="sdt" onChange={changeInput} required/>
                     <p>EMAIL</p>
-                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào email" name="email" onChange={changeInput}/>
+                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào email" name="email" onChange={changeInput} required/>
                     <p>TÀI KHOẢN</p>
-                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào tài khoản" name="username" onChange={changeInput}/>
+                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào tài khoản" name="username" onChange={changeInput} required/>
                     <p>MẬT KHẨU</p>
-                    <input type="password" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào mật khẩu" name="password" onChange={changeInput}/>
+                    <input type="password" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào mật khẩu" name="password" onChange={changeInput} required/>
                     <p>ĐỊA CHỈ</p>
-                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào địa chỉ" name="diachi" onChange={changeInput}/>
+                    <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Nhập vào địa chỉ" name="diachi" onChange={changeInput} required/>
                     <div id="recaptcha-container" className="mt-4 mb-4"></div>
                     <button type="submit" className="btn btn-success mr-4">ĐĂNG KÝ</button>
                     <button type="reset" className="btn btn-info">LÀM MỚI</button>

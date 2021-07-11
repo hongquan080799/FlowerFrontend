@@ -136,7 +136,7 @@ function Donhang_workplace
                                             
                                           }
                                        </td>
-                                       <td>{dh.hinhthucthanhtoan==1?'Tiền mặt':'Thẻ'}</td>
+                                       <td>{dh.hinhthucthanhtoan==1?'Tiền mặt':'Online'}</td>
                                        <td>{dh.nhanvien?.manv}</td>
                                        <td>{dh.nhanvien?dh.nhanvien?.ho + ' ' + dh.nhanvien?.ten : ''}</td>
                                        <td>{dh.khachhang?.makh}</td>

@@ -64,7 +64,7 @@ function Topbar(){
                     <p className="login item mr-3"><i className="fa fa-user-circle fa-lg" aria-hidden="true" ></i> {user?.ho +' ' +  user?.ten}</p>
                     {open?
                         <div class="myAccount" style={{zIndex:1}}>
-                            <p data-toggle="modal" data-target="#accountInfo"><i class="fa fa-user" aria-hidden="true"></i> Thông tin tài khoản</p>
+                            <p onClick={()=> history.push('/viewAcc')}><i class="fa fa-user" aria-hidden="true"></i> Thông tin tài khoản</p>
                             <p onClick={()=> history.push('/viewOrder')}><i class="fa fa-shopping-bag" aria-hidden="true"></i> Đơn hàng của tôi</p>
                         </div> :''  
                      }
@@ -104,6 +104,8 @@ function Topbar(){
                 pageId="575303299345434"
                 appId="2594387300854202"
             />
+
+       
             <div className='d-none d-sm-block'>
                 <div className='topbar d-flex justify-content-around'>
                     <div className='topbar__contact d-flex'>              
@@ -133,72 +135,6 @@ function Topbar(){
                     </div>
                 </div>
             </div>
-            {/* modal */}
-            <div className="modal fade" id="accountInfo" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-lg" role="document">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="exampleModalLabel">THÔNG TIN TÀI KHOẢN</h5>
-                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                    </div>
-                    
-                    <div className="modal-body">
-                        <h5>Thông tin về khách hàng : {user?.ho + ' ' + user?.ten}</h5>
-                      <div className="table-responsive">
-                      <table className="table table-borderless table-font mt-4">
-                        <tbody>
-                          <tr>
-                            <td>Họ</td>
-                            <td><input type="text" className="form-control mb-2 mr-sm-2" defaultValue={user?.ho} name="ho" onChange={handleChange}/></td>
-                          </tr>
-                          <tr>
-                            <td>Tên</td>
-                            <td><input type="text" className="form-control mb-2 mr-sm-2" defaultValue={user?.ten} name="ten" onChange={handleChange} /></td>
-                          </tr>
-                          <tr>
-                            <td>Giới tính</td>
-                            <td> 
-                                <select className="custom-select my-1 mr-sm-2" defaultValue={user?.gioitinh} name="gioitinh" onChange={handleChange}>
-                                    <option defaultValue={0}>Nam</option>
-                                    <option defaultValue={1}>Nữ</option>
-                                </select> 
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Số điện thoại</td>
-                            <td><input type="text" className="form-control mb-2 mr-sm-2" defaultValue={user?.sdt} name="sdt" onChange={handleChange}/></td>
-                          </tr>
-                          <tr>
-                            <td>Email</td>
-                            <td><input type="text" className="form-control mb-2 mr-sm-2" defaultValue={user?.email} name="email" onChange={handleChange}/></td>
-                          </tr>
-                          <tr>
-                            <td>Địa chỉ</td>
-                            <td><input type="text" className="form-control mb-2 mr-sm-2" defaultValue={user?.diachi} name="diachi" onChange={handleChange}/> </td>
-                          </tr>
-                          <tr>
-                            <td>User?name</td>
-                            <td><input type="text" className="form-control mb-2 mr-sm-2" defaultValue={user?.taikhoan?.username} name="username" onChange={handleChange}/></td>
-                          </tr>
-                          <tr>
-                            <td>Password</td>
-                            <td><input type="text" className="form-control mb-2 mr-sm-2" defaultValue={user?.taikhoan?.password} name="password" onChange={handleChange}/></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      </div>
-                      
-            
-                    </div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={()=>initialUserUpdate(user)}>Thoát</button>
-                      <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={submitUpdate}>Lưu thay đổi</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             
         </div>
     )

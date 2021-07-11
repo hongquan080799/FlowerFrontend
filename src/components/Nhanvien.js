@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import SanphamWorkplace from './SanphamWorkplace'
 import DanhMucWorkplace from './DanhMucWorkplace'
 import Donhang from './Donhang_workplace'
+import ViewAccountNV from './ViewAccountNV'
 import axios from 'axios'
 import {
     BrowserRouter as Router,
@@ -66,6 +67,10 @@ function Nhanvien(){
             Page = <Donhang slide={slide} user={user}/>
             break;
         }
+        case 'account':{
+            Page = <ViewAccountNV />
+            break;
+        }
     }
     return(
         <div>
@@ -85,6 +90,7 @@ function Nhanvien(){
                         <Link to="/nhanvien/sanpham"><p><i className="fa fa-list-alt" aria-hidden="true"></i><span className="ml-2" >Danh sách sản phẩm</span></p></Link>
                         <Link to="/nhanvien/danhmuc"><p><i className="fa fa-users" aria-hidden="true"></i><span className="ml-2">Danh sách danh mục</span></p></Link>
                         <Link to="/nhanvien/donhang"><p><i className="fa fa-calendar-check-o" aria-hidden="true"></i><span className="ml-2">Danh sách đơn hàng</span></p></Link>
+                        <Link to="/nhanvien/account"><p><i class="fa fa-user-secret" aria-hidden="true"></i><span className="ml-2">Thông tin tài khoản</span></p></Link>
                     </div>
                     
                 </div>

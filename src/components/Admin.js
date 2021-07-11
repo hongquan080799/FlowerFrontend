@@ -5,6 +5,7 @@ import DanhMucWorkplace from './DanhMucWorkplace'
 import KhachhangWorkplace from './KhachhangWorkplace'
 import NhanvienWorkplace from './NhanvienWorkplace'
 import DonhangWorkplace from './Donhang_workplace'
+import Thongke from './Thongke'
 import {
     BrowserRouter as Router,
     Switch,
@@ -53,6 +54,9 @@ function Admin(){
             Page = <DonhangWorkplace slide={slide}/>
             break;
         }
+        case 'thongke':{
+            Page = <Thongke />
+        }
     }
     return(
         <div>
@@ -74,7 +78,7 @@ function Admin(){
                         <Link to="/admin/khachhang"><p><i className="fa fa-calendar-check-o" aria-hidden="true"></i><span className="ml-2">Danh sách khách hàng</span></p></Link>
                         <Link to="/admin/nhanvien"><p><i className="fa fa-calendar" aria-hidden="true"></i><span className="ml-2">Danh sách nhân viên</span></p></Link>
                         <Link to="/admin/donhang"><p><i className="fa fa-calendar" aria-hidden="true"></i><span className="ml-2">Danh sách đơn hàng</span></p></Link>
-                        <Link to="/admin/sanpham"><p><i className="fa fa-sign-out" aria-hidden="true"></i><span className="ml-2">Thoát</span></p></Link>
+                        <Link to="/admin/thongke"><p><i class="fa fa-area-chart" aria-hidden="true"></i><span className="ml-2">Thống kê</span></p></Link>
                     </div>
                     
                 </div>

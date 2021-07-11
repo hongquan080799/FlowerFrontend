@@ -265,16 +265,16 @@ function Admin_workplace({slide}){
                             <div className="row">
                                 <div className="col-6">
                                     <label>Mã sản phẩm</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='masp' readOnly={onUpdate?true:false}/>
+                                    <input className="form-control" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" ref={register} name='masp' readOnly={onUpdate?true:false} required/>
                                     <label>Tên sản phẩm</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='tensp'/>
+                                    <input className="form-control" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" ref={register} name='tensp' required/>
                                     <label>Số lượng</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='soluong' type='number' />
+                                    <input className="form-control" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" ref={register} name='soluong' type='number' required />
                                     <label>Đơn giá</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='dongia' type='number' />
+                                    <input className="form-control" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" ref={register} name='dongia' type='number' required />
                                     <label>Hình ảnh</label>
                                     <div className="form-group">
-                                          <input className="form-control-file border" placeholder="Please enter here ..." ref={register} name='photo' type="file" onChange={handleImage}/>
+                                          <input className="form-control-file border" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" ref={register} name='photo' type="file" onChange={handleImage}/>
                                     </div>
                                     <div className={fileUrl!==''?"":"d-none"}>
                                         <img src={fileUrl} alt="quan" style={{maxWidth:"100%"}}/>
@@ -285,7 +285,7 @@ function Admin_workplace({slide}){
                                 </div>
                                 <div className="col-6">
                                     <label>Khuyến mãi</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='khuyenmai' />
+                                    <input className="form-control" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" ref={register} name='khuyenmai' defaultValue="0"  />
                                     <label>Danh mục</label>
                                     <select className="form-control" ref={register} name='madm'>
                                         {danhmuc?.map(dm=>(
@@ -293,9 +293,9 @@ function Admin_workplace({slide}){
                                         ))}
                                     </select>
                                     <label>Mô tả</label>
-                                    <input className="form-control" placeholder="Please enter here ..." ref={register} name='motangan'/>
+                                    <input className="form-control" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" ref={register} name='motangan' required/>
                                     <label>Mô tả chi tiết</label>
-                                    <textarea className="form-control" placeholder="Please enter here ..." ref={register} name='motachitiet' rows="5"/>
+                                    <textarea className="form-control" placeholder="Nhập vào đây ..." title="Nhập vào trường này làm ơn" required ref={register} name='motachitiet' rows="5"/>
                                 </div>
                             </div>
                             

@@ -61,7 +61,7 @@ function Login(){
                                 </div>
                                 <div className="info">
                                     <Link to="/register"><a>Tạo tài khoản</a><br    /></Link>
-                                    <a href="#">Quên mật khẩu ?</a>
+                                    <Link to="/forget"><a>Quên mật khẩu</a><br    /></Link>
                                 </div>
                                 <div className="submit" type="submit">
                                     <button onClick={handleSubmit}>Submit</button>

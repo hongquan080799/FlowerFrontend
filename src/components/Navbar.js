@@ -40,8 +40,8 @@ function Navbar(){
          </a>
          <Link to='/'>
           <a className="navbar-brand d-none d-sm-block" to="/#">
-              <img src={logo} className='logo'/>
-              FLOWERS AND SEEDS
+              <img src="https://logos.textgiraffe.com/logos/logo-name/Hayate-designstyle-summer-m.png" style={{width:100}} className='logo'/>
+              <span style={{fontSize:20,color:'#005a18'}}>FLOWERS AND SEEDS</span>
           </a>
          </Link>
         <form className='search input-group ' onFocus={()=>setIsSearch(true)} onBlur={()=>setIsSearch(false)}>
